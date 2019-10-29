@@ -34,19 +34,29 @@ class Pancake extends React.Component {
     });
   };
 
+  componentDidMount() {
+    this.startInterval()
+  }
+
+  componentWillUnmount() {
+    this.cleanUpInterval()
+  }
+  
+  
+
   getPancakeStatus = () => {
     const { timeCooked, flippedAt } = this.state;
 
     // first side
     if (flippedAt === null && typeof flippedAt !== "number") {
-      if (timeCooked < 2) return "raw";
-      if (timeCooked === 2) return "cooked";
+      if (timeCooked < 4) return "raw";
+      if (timeCooked === 4) return "cooked";
       return "burnt";
     }
 
     //second side
-    if (flippedAt > 2 || timeCooked > 4) return "burnt";
-    if (timeCooked === 4 && flippedAt === 2) return "cooked";
+    if (flippedAt > 4 || timeCooked > 8) return "burnt";
+    if (timeCooked === 8 && flippedAt === 4) return "cooked";
     return "raw";
   };
 
